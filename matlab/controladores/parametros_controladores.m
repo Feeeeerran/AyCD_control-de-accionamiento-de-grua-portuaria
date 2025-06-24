@@ -12,7 +12,7 @@ m_aux = M_s + (M_cmax + M_cmin) / 2;
 % obtiene T_hm = Jh_eq' ddl_h + bh_eq' dl_h
 
 % Donde
-Jh_eq_prima = ((Jh_eq * 2 * i_h) / r_hd);
+Jh_eq_prima = ((Jh_eq * 2 * i_h) / r_hd) + (25000 * g * r_hd)/(2*i_h);
 bh_eq_prima = (bh_eq * 2 * i_h) / r_hd;
 
 
@@ -30,7 +30,7 @@ fprintf('   p1 = %f  \n   p2 = %f  \n',polos_h(1), polos_h(2));
 % polinomio caracteristico generico
 % Siendo (s + p)(s^2 + 2 zitta w_n s + w_n^2)
 p = 100;
-zitta = 0.8;        % Factor de amortiguamiento
+zitta = 0.5;        % Factor de amortiguamiento
 T_r = 0.5;          % Rise time
 w_n = 2.5 / T_r;    % Frecuencia natural calculada por tabla
 
@@ -41,6 +41,8 @@ w_n = 2.5 / T_r;    % Frecuencia natural calculada por tabla
 Kp_h = (2 * zitta * w_n * p + w_n^2) * Jh_eq_prima;
 Ki_h = (w_n^2 * p) * Jh_eq_prima;
 Kd_h = (2 * zitta * w_n + p) * Jh_eq_prima - bh_eq_prima;
+
+
 
 disp('Ganancias del controlador de izaje')
 fprintf('   Kp_h = %f\n   Ki_h = %f\n   Kd_h = %f\n\n\n',Kp_h, Ki_h, Kd_h);
@@ -73,9 +75,9 @@ fprintf('   p1 = %f  \n   p2 = %f  \n',polos_t(1), polos_t(2));
 % Usando el metodo de pole placement se especifican los valores del
 % polinomio caracteristico generico
 % Siendo (s + p)(s^2 + 2 zitta w_n s + w_n^2)
-p = 0.3;
+p = 0;
 zitta = 1;      % Factor de amortiguamiento
-T_r = 0.8;          % settling time
+T_r = 2;          % settling time
 w_n = 2 / T_r;    % Frecuencia natural calculada por tabla
 
 
@@ -85,6 +87,8 @@ w_n = 2 / T_r;    % Frecuencia natural calculada por tabla
 Kp_t = (2 * zitta * w_n * p + w_n^2) * Jt_eq_prima;
 Ki_t = (w_n^2 * p) * Jt_eq_prima;
 Kd_t = (2 * zitta * w_n + p) * Jt_eq_prima - bt_eq_prima;
+
+Ki_t = 0;
 
 disp('Ganancias del controlador de carro')
 fprintf('   Kp_t = %f\n   Ki_t = %f\n   Kd_t = %f\n',Kp_t, Ki_t, Kd_t);

@@ -59,7 +59,7 @@ T_tm_max = 4e3;         % [N·m] Torque máximo motor del carro.
 
 % Del trolley
 Jt_eq = J_tm + (J_td / i_t^2);          % [kg·m^2] Momento de inercia equivalente del carro
-bt_eq = b_tm + (b_td/ i_t^2);           % [N·m/(rad/s)] Friccion viscosa equivalente del carro
+bt_eq = b_tm + (b_td / i_t^2);           % [N·m/(rad/s)] Friccion viscosa equivalente del carro
 
 % Del hoist
 Jh_eq = J_hm + (J_hd / i_h^2);          % [kg·m^2] Momento de inercia equivalente del izaje
