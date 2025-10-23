@@ -1,4 +1,4 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <Info File="matlab/specs_sistema_control.m" GroupUUID="" Icon="" Name="specs_sistema_control" Type="StartUp" Visible="0">
-    <Extension Name="StartUpPrev" Value="HEAD"/>
+    <Extension Name="StartUpPrev" Value="2806c7fc-3d48-46b5-b3c0-45ab6330b998"/>
 </Info>
