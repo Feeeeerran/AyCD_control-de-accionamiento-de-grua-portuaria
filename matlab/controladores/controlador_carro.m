@@ -19,7 +19,7 @@ disp('Polos del modelo dinamico de sistema de carro')
 fprintf('   p1 = %f  \n   p2 = %f  \n',polos_t(1), polos_t(2));
 
 % ==================  SINTONIA SERIE  =========================
-% w_n = 100 * polos_t(2);
+% w_n = 10 * polos_t(2);
 % n = 3;
 % 
 % Kp_t = (n * w_n^2) * Jt_eq_prima;
@@ -27,10 +27,10 @@ fprintf('   p1 = %f  \n   p2 = %f  \n',polos_t(1), polos_t(2));
 % Kd_t = (n * w_n) * Jt_eq_prima - bt_eq_prima;
 
 % ==================  ASIGNACION DE POLOS  ====================
-p = 0.01 * polos_t(2);  % Polo en eje real alejado 20 veces del polo del sistema
-zitta = 1.3;          % Factor de amortiguamiento
-T_r = 1;            % Settling time
-w_n = 1 / T_r;        % Frecuencia natural calculada por tabla
+p = 0.1 * polos_t(2);  % Polo en eje real alejado 20 veces del polo del sistema
+zitta = 1;            % Factor de amortiguamiento
+T_r = 0.5;              % Rise time
+w_n = 0.5 / T_r;      % Frecuencia natural calculada por tabla
 
 Kp_t = (2 * zitta * w_n * p + w_n^2) * Jt_eq_prima;
 Ki_t = (w_n^2 * p) * Jt_eq_prima;
