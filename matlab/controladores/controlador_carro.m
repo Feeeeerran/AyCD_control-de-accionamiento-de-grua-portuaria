@@ -1,3 +1,4 @@
+clc;
 %% Trolley - Controlador PID
 
 
@@ -20,22 +21,25 @@ fprintf('   p1 = %f  \n   p2 = %f  \n',polos_t(1), polos_t(2));
 
 % ==================  SINTONIA SERIE  =========================
 % w_n = 10 * polos_t(2);
-% n = 3;
+% n = 0.1;
 % 
 % Kp_t = (n * w_n^2) * Jt_eq_prima;
 % Ki_t = (w_n^3) * Jt_eq_prima;
 % Kd_t = (n * w_n) * Jt_eq_prima - bt_eq_prima;
 
 % ==================  ASIGNACION DE POLOS  ====================
-p = 0.1 * polos_t(2);  % Polo en eje real alejado 20 veces del polo del sistema
+p = -1 * polos_t(2);  % Polo en eje real alejado 20 veces del polo del sistema
 zitta = 1;            % Factor de amortiguamiento
-T_r = 0.5;              % Rise time
-w_n = 0.5 / T_r;      % Frecuencia natural calculada por tabla
+T_r = 0.08;              % Rise time
+w_n = 0.1 / T_r      % Frecuencia natural calculada por tabla
 
 Kp_t = (2 * zitta * w_n * p + w_n^2) * Jt_eq_prima;
-Ki_t = (w_n^2 * p) * Jt_eq_prima;
+Ki_t = (p * w_n^2) * Jt_eq_prima;
 Kd_t = (2 * zitta * w_n + p) * Jt_eq_prima - bt_eq_prima;
 
+% Polos del controlador
+G_t_controlador = tf(1, [1 (2 * zitta * w_n + p) (2 * zitta * w_n * p + w_n^2) (p * w_n^2)]);
+pole(G_t_controlador)
 % ================== TUNE PID =================================
 % Kp_t = 814.248336359987;
 % Ki_t = 62.1556013121662;

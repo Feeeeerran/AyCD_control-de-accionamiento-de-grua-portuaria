@@ -1,0 +1,15 @@
+<?xml-stylesheet href="defaultstyles.css" type="text/css"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:d="http://www.mathworks.com/blockgraphics" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="svg_1" width="400" height="200" d:options="PreserveAspect:On;ScalingOnResizeMax:2.0;Rotate:Off;Resize:FitToBlock">
+	<defs>
+		<style>
+			.font-size-default {
+				font-size:70px;}
+					</style>
+	</defs>
+	<g id="part_2" title="part_0" ie-ports="left:simulink,top:,right:simulink,bottom:">
+		<text id="text_3" class="text font-size-default" x="50.2" y="20.77">
+			<tspan dx="0" dy="62.71" x="50.2" style="white-space: pre;">Derivada </tspan>
+			<tspan dx="0" dy="1.15em" x="50.2">numérica</tspan>
+		</text>
+	</g>
+</svg>

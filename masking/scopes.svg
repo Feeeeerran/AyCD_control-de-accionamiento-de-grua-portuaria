@@ -1,0 +1,10 @@
+<?xml-stylesheet href="defaultstyles.css" type="text/css"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:d="http://www.mathworks.com/blockgraphics" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="svg_1" width="399" height="361" d:options="PreserveAspect:On;ScalingOnResizeMax:2.0;Rotate:Off;Resize:FitToBlock">
+	<g id="part_2" title="part_0" ie-ports="left:simulink*simulink*simulink*simulink*simulink,top:,right:,bottom:">
+		<rect id="rect_46" class="rect" x="50" y="44" width="307" height="173" rx="0" ry="0"/>
+		<rect id="rect_55" class="rect" x="50" y="242" width="30" height="32" rx="0" ry="0"/>
+		<rect id="rect_76" class="rect" x="111" y="242" width="32" height="32" rx="0" ry="0"/>
+		<rect id="rect_77" class="rect" x="266" y="242" width="32" height="32" rx="0" ry="0"/>
+		<rect id="rect_78" class="rect" x="325" y="242" width="32" height="32" rx="0" ry="0"/>
+	</g>
+</svg>
