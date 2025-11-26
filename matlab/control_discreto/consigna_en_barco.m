@@ -6,11 +6,16 @@ function [carro_cons, izaje_cons, t_carro, t_izaje] = consigna_en_barco(Ts, w_c,
 %   1 - Descarga (desde y_c + H_SS y x_t = pos_barco)
 %   2 - Movimiento dentro de barco (desde p_ini hasta p_fin)
 
+% Algunas definiciones para stateflow
+x_t = [0]; dx_t = [0];
+y_h = [0]; dy_h = [0];
+
+
 
 % *** Contemplar en carga, que pasa cuando en el recorrido cambia y_max?
 % Habria que descender a esa nueva altura, pero superando la sill beam
 
-% Carga desde barco hacia muelle ======================
+% Carga en barco (hacia muelle) ======================
 % Siempre se realiza izaje hasta y_max, luego en funcion del movimiento de
 % izaje, se empieza el movimiento del carro cuando se supera la altura del
 % obstaculo adyacente
@@ -61,7 +66,7 @@ end
 % del carro y se ajusta el izaje en funcion de los osbtaculos que hay entre
 % el muelle y la posicion final en barco
 if tipo == 1
-    
+
     % Se filtra el perfil de obstaculos para el recorrido a realizar
     obs = perfil_obs(1:p_fin) * h_c;
     x_t_fin = (p_fin * w_c) - (w_c / 2);
@@ -69,7 +74,7 @@ if tipo == 1
 
     % Consignas de carro
     [x_t, dx_t, t_carro] = perfil_velocidad_trapezoidal(Ts,0, v_t, x_t_fin, 0, set_param_lim(1), set_param_lim(2));
-    
+
     % Siempre se parte desde y_max para entrar al barco
     y_max_ini = max(obs) + h_ss;
     pos_y_max = 1;
@@ -116,64 +121,52 @@ if tipo == 1
     % Se correlaciona con el movimiento del carro
     t_izaje = 0;
     pos_aux = 1;
-    y_h_aux = []; y_h = [];   
-    dy_h_aux = []; dy_h = [];
+    y_h_aux = [y_max_ini]; y_h = [];
+    dy_h_aux = [0]; dy_h = [];
     y_max = y_max_ini;
-   
 
     for idx = 1 : length(x_t)
         if x_t(idx) >= pos_x_max(pos_aux) && (idx * Ts) > t_izaje
-
             % Se evalua si es el ultimo escalon a descender, y se deja
             % velocidad final en v_max
             if pos_aux == length(pos_x_max)
                 [y, dy, t_izaje_aux] = perfil_velocidad_trapezoidal(Ts, y_max, 0, y_max_vec(pos_aux), -set_param_lim(3), set_param_lim(3), set_param_lim(4));
                 y_h = [y_h y_h_aux y];
                 dy_h = [dy_h dy_h_aux dy];
-
+                disp("A")
 
                 t_izaje = (idx * Ts) + t_izaje_aux;
                 break;
             end
 
             % Una vez superado el obstaculo mas alto se empieza a descender
-            [y, dy, t_izaje_aux] = perfil_velocidad_trapezoidal(Ts, y_max, 0, y_max_vec(pos_aux), 0, set_param_lim(3), set_param_lim(4));
-
+            [y, dy, t_izaje_aux] = perfil_velocidad_trapezoidal(Ts, y_max, 0, y_max_vec(pos_aux), -set_param_lim(3)/3, set_param_lim(3), set_param_lim(4));
             y_h = [y_h y_h_aux y];
             dy_h = [dy_h dy_h_aux dy];
-
+  
             % Se actualizan auxiliares
             y_max = y_max_vec(pos_aux);
             pos_aux = pos_aux + 1;
-            y_h_aux = [];
-            dy_h_aux = [];
-            
+            y_h_aux = [y_max];
+            dy_h_aux = [0];
+            idx_aux = 1;
+
 
             % Se traslada el tiempo de izaje a idx
             t_izaje = (idx * Ts) + t_izaje_aux;
 
-
         end
         if (idx * Ts) > t_izaje
-            y_h_aux = [y_h_aux y_max];
-            dy_h_aux = [dy_h_aux 0];
+            y_h_aux(end+1) = y_max;
+            dy_h_aux(end+1) = 0;
         end
     end
-
- 
-
-
 end
-
-
-
 
 
     % Encapsulamiento de las consignas
     carro_cons = [x_t; dx_t]';
     izaje_cons = [y_h; dy_h]';
-
-
 
 end
 

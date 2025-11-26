@@ -4,7 +4,7 @@ clc;
 %% Parámetros generales del sistema:
 Y_t0 = 45;              % [m] Altura fija de poleas de suspensión de izaje en el carro desde nivel de muelle.
 H_c = 2.59;             % [m] Altura de container según estándar ISO.
-W_c = 2.44;             % [m] Ancho de container según estándar ISO.
+W_c = 2.44 + 0.06;      % [m] Ancho de container según estándar ISO + espacio entre containers
 M_s = 15000;            % [kg] Masa del spreader + headblock (sin container).
 M_cmax = 50000;         % [kg] Masa máxima de container totalmente cargado.
 M_cmin = 2000;          % [kg] Masa mínima de container vacío.

@@ -24,14 +24,17 @@ H_SS = H_c;         % Altura de seguridad
 %% Condiciones iniciales
 CI = [
     % x_t0
-    -3.66       
+    0;
     % dx_t0       
-    0       
+    0;
     % y_h0
-    H_SS       
+    35;
     % dy_h0
-    0       
+    0;
 ];
+
+%% Perfil de obstaculos como vector
+Y_c = [2 8 0 3 0 1 9 8 3 11 0 5 5 0 4 0 2 0 2];
 
 %% Limites operativos de movimiento
 
@@ -44,10 +47,3 @@ ddx_t_lim = 0.8;    % [m/s^2] Aceleracion maxima con y sin carga
 y_h_lim = [-20 40]; % [m] Altura de izaje (valores negativos representan dentro de barco
 dy_h_lim = [1.5 3]; % [m/s] Velocidad maxima de izaje (1) Con carga (2) Sin carga
 ddy_h_lim = 0.75;   % [m/s^2] Aceleracion maxima con y sin carga
-
-% set_param_limite = {
-%     x_t_lims,     y_h_lims;
-%     dx_t_lims,    dy_h_lims;
-%     ddx_t_lims,   ddy_h_lims
-% };
-% 
