@@ -20,6 +20,11 @@ T_s0 = 20 / 100;    % [s] Periodo de muestreo
 fs0 = 1 / T_s0;     % [Hz] Frecuencia de muestreo
 H_SS = H_c;         % Altura de seguridad 
 
+%% Perfil de obstaculos como vector
+% El primer elemento representa la sill_beam
+sb_aux = Y_sb / H_c;
+Y_c = [sb_aux 2 8 0 3 0 1 9 8 3 11 0 5 5 0 4 0 2 0 2];
+
 
 %% Condiciones iniciales
 CI = [
@@ -28,13 +33,12 @@ CI = [
     % dx_t0       
     0;
     % y_h0
-    35;
+    max(Y_c * H_c) + H_SS;
     % dy_h0
     0;
 ];
 
-%% Perfil de obstaculos como vector
-Y_c = [2 8 0 3 0 1 9 8 3 11 0 5 5 0 4 0 2 0 2];
+
 
 %% Limites operativos de movimiento
 

@@ -3,6 +3,7 @@ clc;
 
 %% Parámetros generales del sistema:
 Y_t0 = 45;              % [m] Altura fija de poleas de suspensión de izaje en el carro desde nivel de muelle.
+Y_sb = 5;               % [m] Altura de la sill beam
 H_c = 2.59;             % [m] Altura de container según estándar ISO.
 W_c = 2.44 + 0.06;      % [m] Ancho de container según estándar ISO + espacio entre containers
 M_s = 15000;            % [kg] Masa del spreader + headblock (sin container).

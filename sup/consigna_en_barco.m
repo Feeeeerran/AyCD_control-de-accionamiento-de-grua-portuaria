@@ -68,8 +68,8 @@ end
 if tipo == 1
 
     % Se filtra el perfil de obstaculos para el recorrido a realizar
-    obs = perfil_obs(1:p_fin) * h_c;
-    x_t_fin = (p_fin * w_c) - (w_c / 2);
+    obs = perfil_obs(1:p_ini) * h_c;
+    x_t_fin = (p_ini * w_c) - (w_c / 2);
     y_h_fin = obs(end) + h_ss;
 
     % Consignas de carro
